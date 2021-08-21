@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const MapContainer = styled.div`
-    display: ${(props) => (props.gameStarted ? 'grid' : 'none')};
 	position: fixed;
 	top: 0;
 	right: 0;

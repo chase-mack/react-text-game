@@ -14,9 +14,7 @@ const StartButton = styled.button`
 	padding: 0.5rem;
 	height: 3rem;
 	width: 5rem;
-	align-self: center;
 	margin: auto;
-	text-align: center;
 	border: 2px solid rgb(80, 65, 25);
 	border-radius: 0.5rem;
 `;

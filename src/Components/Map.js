@@ -1,10 +1,15 @@
 import React from 'react';
 import { MapContainer, MapItem } from './styles/MapStyles';
 
+const mapDisplay = {
+    hidden: { display: 'none' },
+    visible: { display: 'grid' }
+}
+
 class Map extends React.Component {
-   render() {
-    return (
-            <MapContainer>
+    render() {
+        return (
+            <MapContainer style={this.props.gameStarted ? mapDisplay.visible : mapDisplay.hidden}>
                 <div>
                     <MapItem></MapItem>
                     <MapItem></MapItem>
@@ -21,7 +26,7 @@ class Map extends React.Component {
                     <MapItem></MapItem>
                 </div>
             </MapContainer>
-            )
+        )
     }
 }
 
