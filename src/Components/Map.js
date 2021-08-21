@@ -1,25 +1,26 @@
 import React from 'react';
+import { MapContainer, MapItem } from './styles/MapStyles';
 
 class Map extends React.Component {
    render() {
     return (
-            <div className="grid-container">
+            <MapContainer>
                 <div>
-                    <div className="grid-item" id="a1"></div>
-                    <div className="grid-item" id="a2"></div>
-                    <div className="grid-item" id="a3"></div>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
                 </div>
                 <div>
-                    <div className="grid-item" id="b1"></div>
-                    <div className="grid-item" id="b2"><span id="playerOnMap"></span></div>
-                    <div className="grid-item" id="b3"></div>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
                 </div>
                 <div>
-                    <div className="grid-item" id="c1"></div>
-                    <div className="grid-item" id="c2"></div>
-                    <div className="grid-item" id="c3"></div>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
+                    <MapItem></MapItem>
                 </div>
-            </div>
+            </MapContainer>
             )
     }
 }
