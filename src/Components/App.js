@@ -16,6 +16,7 @@ class App extends React.Component {
         return (
             <React.Fragment>
                 <Menu
+                    className="menu"
                     handleClick={this.handleClick}
                     gameStarted={this.state.gameStarted} />
                 <Map

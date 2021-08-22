@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, MapItem } from './styles/MapStyles';
+import { MapContainer, MapItem, PlayerOnMap } from './styles/MapStyles';
 
 const mapDisplay = {
     hidden: { display: 'none' },
@@ -17,7 +17,9 @@ class Map extends React.Component {
                 </div>
                 <div>
                     <MapItem></MapItem>
-                    <MapItem></MapItem>
+                    <MapItem>
+                        <PlayerOnMap />
+                    </MapItem>
                     <MapItem></MapItem>
                 </div>
                 <div>

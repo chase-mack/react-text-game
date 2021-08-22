@@ -1,7 +1,6 @@
 import React from 'react';
-import { Narration } from './styles/NarrationStyles';
 
-const textDisplay = {
+const elementDisplay = {
     hidden: { display: 'none' },
     visible: { display: 'flex' }
 }
@@ -9,10 +8,18 @@ const textDisplay = {
 class GameText extends React.Component {
     render() {
         return (
-            <Narration
-                style={this.props.gameStarted ? textDisplay.visible : textDisplay.hidden}>
-                This is the narrator text.
-            </Narration>
+            <div
+                className="gameText" 
+                style={this.props.gameStarted ? elementDisplay.visible : elementDisplay.hidden}>
+                <h1 id="narration">
+                    This is the narrator text.
+                </h1>
+                <div className="action">
+                    <form autoComplete="off" id="form">
+                        <input type="text" name="userInput" id="userInput" placeholder="What do you do?" />
+                    </form>
+                </div>
+            </div>
         )
     }
 }

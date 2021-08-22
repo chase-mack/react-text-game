@@ -20,4 +20,13 @@ const MapItem = styled.div`
 	justify-content: center;
 `;
 
-export { MapContainer, MapItem };
+const PlayerOnMap = styled.span`
+	display: block;
+	height: 10px;
+	width: 10px;
+	margin: auto;
+	background: rgb(80, 65, 25);
+	border-radius: 50%;
+`;
+
+export { MapContainer, MapItem, PlayerOnMap };

@@ -36,8 +36,7 @@ div.menu {
 	border-radius: 0.5rem;
 }
 
-body .grid-container {
-	display: none;
+.map-container {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -58,7 +57,6 @@ body .grid-container {
 }
 
 .gameText {
-	display: none;
 	flex-direction: column;
 	margin: auto;
 	align-items: center;
