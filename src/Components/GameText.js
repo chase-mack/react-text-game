@@ -11,9 +11,7 @@ class GameText extends React.Component {
             <div
                 className="gameText" 
                 style={this.props.gameStarted ? elementDisplay.visible : elementDisplay.hidden}>
-                <h1 id="narration">
-                    This is the narrator text.
-                </h1>
+                <h1 className="narration">{ this.props.narration }</h1>
                 <div className="action">
                     <form autoComplete="off" id="form">
                         <input type="text" name="userInput" id="userInput" placeholder="What do you do?" />
