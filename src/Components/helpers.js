@@ -12,10 +12,6 @@ const tryLockedDoor = () => {
         locked.play();
     }, 1500);
 }
-const gameOver = () => {
-    if (!player.alive || !boss.alive) {
-        form.style.display = 'none';
-    }
-    music.pause();
-    ending.play();
+const checkValidInput = () => {
+    
 }
