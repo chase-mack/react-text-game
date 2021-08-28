@@ -2,9 +2,16 @@ import React from 'react';
 import Map from './Map';
 import Menu from './Menu';
 import GameText from './GameText';
-import Movement from './Movement';
+import destinations from './Movement';
+import inventory from './Equipment';
+import interruptKeys from './Interrupters';
 
 class App extends React.Component {
+    allKeywordObjs = {
+        ...destinations,
+        ...inventory,
+        ...interruptKeys
+    }
     state = {
         gameStarted: false,
         gameOver: false,
@@ -15,17 +22,36 @@ class App extends React.Component {
     handleClick = () => {
         this.setState({ gameStarted: true });
     }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.isInputValid();
+        for (const destination in destinations) {
+            if (userInput.value.includes(destination)) {
+                this.setState({ currentKeyword: destination });
+            }
+        }
+        for (const item in inventory) {
+            if (userInput.value.includes(item)) {
+                this.setState({ currentKeyword: item });
+            }
+        }
+        for (const interruper in interruptKeys) {
+            if (userInput.value.includes(interruper)) {
+                this.setState({ currentKeyword: interruper });
+            }
+        }
+    }
     changeNarration = (text) => {
         this.setState({ currentNarration: text });
     }
-    setCurrentKeyword = (object) => {
-        let inputValue = document.querySelector('#userInput').value.split(' ');
+    isInputValid = () => {
+        let inputValue = userInput.value.split(' ');
         console.log(inputValue);
-        if(!inputValue.some(v => Object.keys(object).includes(v))) {
-            
+        if (!inputValue.some(v => Object.keys(this.allKeywordObjs).includes(v))) {
+            this.setState({ currentNarration: 'Maybe you should try something else?' });
         }
     }
-    changeLocation = (location) => {
+    setCurrentLocation = (location) => {
         this.setState({ currentLocation: location });
     }
     render() {
@@ -39,6 +65,7 @@ class App extends React.Component {
                     gameStarted={this.state.gameStarted} />
                 <GameText
                     gameStarted={this.state.gameStarted}
+                    form={this.isInputValid}
                     narration={this.state.currentNarration} />
             </React.Fragment>
         )

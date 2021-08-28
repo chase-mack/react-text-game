@@ -12,6 +12,3 @@ const tryLockedDoor = () => {
         locked.play();
     }, 1500);
 }
-const checkValidInput = () => {
-    
-}
