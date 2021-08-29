@@ -2,32 +2,32 @@ import React from 'react';
 import Map from './Map';
 import Menu from './Menu';
 import GameText from './GameText';
-import destinations from './Movement';
-import inventory from './Equipment';
-import interruptKeys from './Interrupters';
+import { destinations, inventory, interrupters } from './keywordObjects';
 
 class App extends React.Component {
-    allKeywordObjs = {
-        ...destinations,
-        ...inventory,
-        ...interruptKeys
-    }
     state = {
         gameStarted: false,
         gameOver: false,
         currentNarration: 'You awaken in a dark room. After a few moments of searching in the dark, you find a box of old matches.',
         currentKeyword: '',
-        currentLocation: ''
+        currentLocation: 'living'
     };
+    allKeywordObjs = {
+        ...destinations,
+        ...inventory,
+        ...interrupters
+    }
     handleClick = () => {
         this.setState({ gameStarted: true });
     }
     handleSubmit = (e) => {
+        let userInput = document.querySelector('#userInput');
         e.preventDefault();
         this.isInputValid();
         for (const destination in destinations) {
             if (userInput.value.includes(destination)) {
                 this.setState({ currentKeyword: destination });
+                this.setState({ currentLocation: destination });
             }
         }
         for (const item in inventory) {
@@ -35,24 +35,19 @@ class App extends React.Component {
                 this.setState({ currentKeyword: item });
             }
         }
-        for (const interruper in interruptKeys) {
-            if (userInput.value.includes(interruper)) {
-                this.setState({ currentKeyword: interruper });
+        for (const interrupter in interrupters) {
+            if (userInput.value.includes(interrupter)) {
+                this.setState({ currentKeyword: interrupter });
             }
         }
-    }
-    changeNarration = (text) => {
-        this.setState({ currentNarration: text });
+        console.log(this.allKeywordObjs);
+        e.target.reset();
     }
     isInputValid = () => {
-        let inputValue = userInput.value.split(' ');
-        console.log(inputValue);
+        let inputValue = document.querySelector('#userInput').value.split(' ');
         if (!inputValue.some(v => Object.keys(this.allKeywordObjs).includes(v))) {
             this.setState({ currentNarration: 'Maybe you should try something else?' });
         }
-    }
-    setCurrentLocation = (location) => {
-        this.setState({ currentLocation: location });
     }
     render() {
         return (
@@ -62,10 +57,11 @@ class App extends React.Component {
                     handleClick={this.handleClick}
                     gameStarted={this.state.gameStarted} />
                 <Map
-                    gameStarted={this.state.gameStarted} />
+                    gameStarted={this.state.gameStarted}
+                    currentLocation={this.state.currentLocation} />
                 <GameText
                     gameStarted={this.state.gameStarted}
-                    form={this.isInputValid}
+                    handleSubmit={this.handleSubmit}
                     narration={this.state.currentNarration} />
             </React.Fragment>
         )

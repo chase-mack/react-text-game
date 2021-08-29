@@ -1,7 +1,4 @@
 import React from 'react';
-import destinations from './Movement';
-import interruptKeys from './Interrupters';
-import inventory from './Equipment';
 
 const elementDisplay = {
     hidden: { display: 'none' },
@@ -9,11 +6,6 @@ const elementDisplay = {
 }
 
 class GameText extends React.Component {
-    allKeywordObjs = {
-        ...destinations,
-        ...inventory,
-        ...interruptKeys
-    }
     render() {
         return (
             <div
@@ -24,7 +16,7 @@ class GameText extends React.Component {
                     <form
                         autoComplete="off"
                         id="form"
-                    >
+                        onSubmit={this.props.handleSubmit}>
                         <input type="text" name="userInput" id="userInput" placeholder="What do you do?" />
                     </form>
                 </div>
