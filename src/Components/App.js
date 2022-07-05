@@ -4,7 +4,7 @@ import Menu from './Menu';
 import GameText from './GameText';
 import { destinations, inventory, interrupters } from './keywordObjects';
 
-class App extends React.Component {
+const App = () => {
     state = {
         gameStarted: false,
         gameOver: false,
@@ -49,23 +49,22 @@ class App extends React.Component {
             this.setState({ currentNarration: 'Maybe you should try something else?' });
         }
     }
-    render() {
-        return (
-            <React.Fragment>
-                <Menu
-                    className="menu"
-                    handleClick={this.handleClick}
-                    gameStarted={this.state.gameStarted} />
-                <Map
-                    gameStarted={this.state.gameStarted}
-                    currentLocation={this.state.currentLocation} />
-                <GameText
-                    gameStarted={this.state.gameStarted}
-                    handleSubmit={this.handleSubmit}
-                    narration={this.state.currentNarration} />
-            </React.Fragment>
-        )
-    }
+
+    return (
+        <React.Fragment>
+            <Menu
+                className="menu"
+                handleClick={this.handleClick}
+                gameStarted={this.state.gameStarted} />
+            <Map
+                gameStarted={this.state.gameStarted}
+                currentLocation={this.state.currentLocation} />
+            <GameText
+                gameStarted={this.state.gameStarted}
+                handleSubmit={this.handleSubmit}
+                narration={this.state.currentNarration} />
+        </React.Fragment>
+    )
 }
 
-export default App;
+export { App };

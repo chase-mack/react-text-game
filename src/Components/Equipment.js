@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Equipment extends React.Component {
+const Equipment = () => {
     inventory = {
         match: {
             wrongRoom: 'There are not any matches in this room.',
@@ -50,11 +50,10 @@ class Equipment extends React.Component {
             useNow: 'You hear a loud click downstairs. This must unlock the front door. What is out there?'
         }
     };
-    render() {
-        return {
 
-        }
+    return {
+
     }
 }
 
-export default Equipment;
+export { Equipment };

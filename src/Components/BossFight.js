@@ -1,6 +1,6 @@
 import React from 'react';
 
-class BossFight extends React.Component {
+const BossFight = () => {
     fightKeys = {
         hit: '',
         attack: '',
@@ -11,11 +11,10 @@ class BossFight extends React.Component {
         dodge: '',
         move: ''
     };
-    render() {
-        return {
 
-        }
+    return {
+
     }
 }
 
-export default BossFight;
+export { BossFight };
