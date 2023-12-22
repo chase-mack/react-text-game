@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Map from './Map';
 import Menu from './Menu';
 import GameText from './GameText';
-import { destinations, inventory, interrupters } from './keywordObjects';
+import { destinations, inventory, interrupters } from '../util/keywordObjects';
 
 export default function App() {
     const [gameStarted, setGameStarted] = useState(false);
