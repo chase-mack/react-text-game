@@ -16,13 +16,11 @@ const btnDisplay = {
     notClicked: { display: 'inline-block' }
 }
 
-const Menu = () => {
+export default function Menu(props) {
     return (
         <StartButton
-            style={this.props.gameStarted ? btnDisplay.clicked : btnDisplay.notClicked}
-            onClick={this.props.handleClick}>Start
+            style={props.gameStarted ? btnDisplay.clicked : btnDisplay.notClicked}
+            onClick={props.handleClick}>Start
         </StartButton>
     )
 }
-
-export { Menu };

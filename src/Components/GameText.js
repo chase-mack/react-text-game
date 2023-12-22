@@ -5,18 +5,18 @@ const elementDisplay = {
     visible: { display: 'flex' }
 }
 
-const GameText = () => {
+export default function GameText(props) {
     return (
         <div
             className="gameText"
-            style={this.props.gameStarted ? elementDisplay.visible : elementDisplay.hidden}
+            style={props.gameStarted ? elementDisplay.visible : elementDisplay.hidden}
         >
-            <h1 className="narration">{this.props.narration}</h1>
+            <h1 className="narration">{props.narration}</h1>
             <div className="action">
                 <form
                     autoComplete="off"
                     id="form"
-                    onSubmit={this.props.handleSubmit}
+                    onSubmit={props.handleSubmit}
                 >
                     <input type="text" name="userInput" id="userInput" placeholder="What do you do?" />
                 </form>
@@ -24,5 +24,3 @@ const GameText = () => {
         </div>
     )
 }
-
-export { GameText };

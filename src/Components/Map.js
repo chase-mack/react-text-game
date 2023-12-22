@@ -40,53 +40,51 @@ const playerDisplay = {
     visible: { display: 'block' }
 };
 
-const Map = () => {
+export default function Map(props) {
     return (
-        <MapContainer style={this.props.gameStarted ? mapDisplay.visible : mapDisplay.hidden}>
+        <MapContainer style={props.gameStarted ? mapDisplay.visible : mapDisplay.hidden}>
             <div>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'up' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'up' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'foyer' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'foyer' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'garage' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'garage' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
             </div>
             <div>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'bedroom' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'bedroom' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'living' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'living' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'down' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'down' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
             </div>
             <div>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'office' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'office' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'kitchen' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'kitchen' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
                 <MapItem>
                     <PlayerOnMap
-                        style={this.props.currentLocation === 'basement' ? playerDisplay.visible : playerDisplay.hidden} />
+                        style={props.currentLocation === 'basement' ? playerDisplay.visible : playerDisplay.hidden} />
                 </MapItem>
             </div>
         </MapContainer>
     )
 }
-
-export { Map };

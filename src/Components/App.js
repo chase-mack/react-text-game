@@ -1,70 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Map from './Map';
 import Menu from './Menu';
 import GameText from './GameText';
 import { destinations, inventory, interrupters } from './keywordObjects';
 
-const App = () => {
-    state = {
-        gameStarted: false,
-        gameOver: false,
-        currentNarration: 'You awaken in a dark room. After a few moments of searching in the dark, you find a box of old matches.',
-        currentKeyword: '',
-        currentLocation: 'living'
-    };
-    allKeywordObjs = {
+export default function App() {
+    const [gameStarted, setGameStarted] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+    const [currentNarration, setCurrentNarration] = useState(
+        'You awaken in a dark room. After a few moments of searching in the dark, you find a box of old matches.'
+    );
+    const [currentKeyword, setCurrentKeyword] = useState('');
+    const [currentLocation, setCurrentLocation] = useState('living');
+
+    const allKeywordObjs = {
         ...destinations,
         ...inventory,
         ...interrupters
-    }
-    handleClick = () => {
-        this.setState({ gameStarted: true });
-    }
-    handleSubmit = (e) => {
-        let userInput = document.querySelector('#userInput');
+    };
+
+    const handleClick = () => {
+        setGameStarted(true);
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        this.isInputValid();
+        isInputValid();
+
+        const userInput = document.querySelector('#userInput').value;
+
         for (const destination in destinations) {
-            if (userInput.value.includes(destination)) {
-                this.setState({ currentKeyword: destination });
-                this.setState({ currentLocation: destination });
+            if (userInput.includes(destination)) {
+                setCurrentKeyword(destination);
+                setCurrentLocation(destination);
             }
         }
+
         for (const item in inventory) {
-            if (userInput.value.includes(item)) {
-                this.setState({ currentKeyword: item });
+            if (userInput.includes(item)) {
+                setCurrentKeyword(item);
             }
         }
+
         for (const interrupter in interrupters) {
-            if (userInput.value.includes(interrupter)) {
-                this.setState({ currentKeyword: interrupter });
+            if (userInput.includes(interrupter)) {
+                setCurrentKeyword(interrupter);
             }
         }
-        console.log(this.allKeywordObjs);
+
+        console.log(allKeywordObjs);
         e.target.reset();
-    }
-    isInputValid = () => {
-        let inputValue = document.querySelector('#userInput').value.split(' ');
-        if (!inputValue.some(v => Object.keys(this.allKeywordObjs).includes(v))) {
-            this.setState({ currentNarration: 'Maybe you should try something else?' });
+    };
+
+    const isInputValid = () => {
+        const inputValue = document.querySelector('#userInput').value.split(' ');
+
+        if (!inputValue.some((v) => Object.keys(allKeywordObjs).includes(v))) {
+            setCurrentNarration('Maybe you should try something else?');
         }
-    }
+    };
 
     return (
         <React.Fragment>
-            <Menu
-                className="menu"
-                handleClick={this.handleClick}
-                gameStarted={this.state.gameStarted} />
-            <Map
-                gameStarted={this.state.gameStarted}
-                currentLocation={this.state.currentLocation} />
+            <Menu className="menu" handleClick={handleClick} gameStarted={gameStarted} />
+            <Map gameStarted={gameStarted} currentLocation={currentLocation} />
             <GameText
-                gameStarted={this.state.gameStarted}
-                handleSubmit={this.handleSubmit}
-                narration={this.state.currentNarration} />
+                gameStarted={gameStarted}
+                handleSubmit={handleSubmit}
+                narration={currentNarration}
+            />
         </React.Fragment>
-    )
-}
+    );
+};
 
-export { App };
