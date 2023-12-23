@@ -10,7 +10,8 @@ export default function App() {
     const [currentNarration, setCurrentNarration] = useState(
         'You awaken in a dark room. After a few moments of searching in the dark, you find a box of old matches.'
     );
-    const [currentKeyword, setCurrentKeyword] = useState('');
+    const [currentKeywordType, setCurrentKeywordType] = useState(null);
+    const [currentKeyword, setCurrentKeyword] = useState(null);
     const [currentLocation, setCurrentLocation] = useState('living');
 
     const allKeywordObjs = {
@@ -25,43 +26,54 @@ export default function App() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        isInputValid();
 
-        const userInput = document.querySelector('#userInput').value;
-
-        for (const destination in destinations) {
-            if (userInput.includes(destination)) {
-                setCurrentKeyword(destination);
-                setCurrentLocation(destination);
-            }
+        const { type, value } = isInputValid();
+        console.log(`Type: ${type}, Value: ${JSON.stringify(value, null, 4)}`)
+        switch (type) {
+            case 'destinations':
+                setCurrentKeyword(value);
+                setCurrentKeywordType(type);
+                setCurrentLocation(value);
+                setCurrentNarration(value.proceed);
+                break;
+            case 'inventory':
+                setCurrentKeyword(value);
+                setCurrentKeywordType(type);
+                setCurrentNarration(value.equip);
+                break;
+            case 'interrupters':
+                let text = value.general || value;
+                setCurrentKeyword(value);
+                setCurrentKeywordType(type);
+                setCurrentNarration(text);
+                break;
+            default:
+                setCurrentNarration('Maybe you should try something else.');
+                break;
         }
-
-        for (const item in inventory) {
-            if (userInput.includes(item)) {
-                setCurrentKeyword(item);
-            }
-        }
-
-        for (const interrupter in interrupters) {
-            if (userInput.includes(interrupter)) {
-                setCurrentKeyword(interrupter);
-            }
-        }
-
-        console.log(allKeywordObjs);
         e.target.reset();
     };
 
     const isInputValid = () => {
         const inputValue = document.querySelector('#userInput').value.split(' ');
 
-        if (!inputValue.some((v) => Object.keys(allKeywordObjs).includes(v))) {
-            setCurrentNarration('Maybe you should try something else?');
+        const keywordEntry = Object.entries(allKeywordObjs).find(([key]) => inputValue.includes(key));
+        
+        if (keywordEntry) {
+            const [foundKeyword] = keywordEntry;
+            if (destinations[foundKeyword]) {
+                return { type: 'destinations', value: destinations[foundKeyword] };
+            } else if (inventory[foundKeyword]) {
+                return { type: 'inventory', value: inventory[foundKeyword] };
+            } else if (interrupters[foundKeyword]) {
+                return { type: 'interrupters', value: interrupters[foundKeyword] };
+            }
         }
+        return { type: null, value: null };
     };
 
     return (
-        <React.Fragment>
+        <>
             <Menu className="menu" handleClick={handleClick} gameStarted={gameStarted} />
             <Map gameStarted={gameStarted} currentLocation={currentLocation} />
             <GameText
@@ -69,7 +81,7 @@ export default function App() {
                 handleSubmit={handleSubmit}
                 narration={currentNarration}
             />
-        </React.Fragment>
+        </>
     );
 };
 
