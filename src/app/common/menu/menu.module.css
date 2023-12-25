@@ -1,0 +1,9 @@
+.startButton {
+    background: var(--primary-color);
+	padding: 0.5rem;
+	height: 3rem;
+	width: 5rem;
+	margin: auto;
+	border: 2px solid var(--tertiary-color);
+	border-radius: 0.5rem;
+}

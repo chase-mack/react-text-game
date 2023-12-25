@@ -1,0 +1,28 @@
+.mapContainer {
+    position: fixed;
+	top: 0;
+	right: 0;
+	grid-template-columns: auto auto auto;
+	height: 95px;
+	width: 100px;
+	border-radius: 0.5rem;
+	background: var(--primary-color);
+}
+
+.mapItem {
+    border: 1px solid var(--tertiary-color);
+	width: 32px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.playerOnMap {
+    display: block;
+	height: 10px;
+	width: 10px;
+	margin: auto;
+	background: var(--tertiary-color);
+	border-radius: 50%;
+}

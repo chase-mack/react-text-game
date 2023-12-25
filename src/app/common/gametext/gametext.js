@@ -1,24 +1,25 @@
-import React from 'react';
-
-const elementDisplay = {
-    hidden: { display: 'none' },
-    visible: { display: 'flex' }
-}
+import styles from './gametext.module.css';
 
 export default function GameText(props) {
+
+    const elementDisplay = {
+        hidden: { display: 'none' },
+        visible: { display: 'flex' }
+    }
+
     return (
         <div
-            className="gameText"
+            className={styles.gameText}
             style={props.gameStarted ? elementDisplay.visible : elementDisplay.hidden}
         >
-            <h1 className="narration">{props.narration}</h1>
+            <h1>{props.narration}</h1>
             <div className="action">
                 <form
                     autoComplete="off"
                     id="form"
                     onSubmit={props.handleSubmit}
                 >
-                    <input type="text" name="userInput" id="userInput" placeholder="What do you do?" />
+                    <input type="text" name="userInput" id="userInput" className={styles.userInput} placeholder="What do you do?" />
                 </form>
             </div>
         </div>

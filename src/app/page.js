@@ -1,7 +1,8 @@
+'use client'
 import React, { useState } from 'react';
-import Map from './Map';
-import Menu from './Menu';
-import GameText from './GameText';
+import Map from './common/map/map';
+import Menu from './common/menu/menu';
+import GameText from './common/gametext/gametext';
 import { destinations, inventory, interrupters } from '../util/keywordObjects';
 
 export default function App() {
@@ -27,23 +28,23 @@ export default function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { type, value } = isInputValid();
-        console.log(`Type: ${type}, Value: ${JSON.stringify(value, null, 4)}`)
+        const { type, value, keyword } = isInputValid();
+
         switch (type) {
             case 'destinations':
-                setCurrentKeyword(value);
+                setCurrentKeyword(keyword);
                 setCurrentKeywordType(type);
-                setCurrentLocation(value);
+                setCurrentLocation(keyword);
                 setCurrentNarration(value.proceed);
                 break;
             case 'inventory':
-                setCurrentKeyword(value);
+                setCurrentKeyword(keyword);
                 setCurrentKeywordType(type);
                 setCurrentNarration(value.equip);
                 break;
             case 'interrupters':
                 let text = value.general || value;
-                setCurrentKeyword(value);
+                setCurrentKeyword(keyword);
                 setCurrentKeywordType(type);
                 setCurrentNarration(text);
                 break;
@@ -62,11 +63,11 @@ export default function App() {
         if (keywordEntry) {
             const [foundKeyword] = keywordEntry;
             if (destinations[foundKeyword]) {
-                return { type: 'destinations', value: destinations[foundKeyword] };
+                return { type: 'destinations', value: destinations[foundKeyword], keyword: foundKeyword };
             } else if (inventory[foundKeyword]) {
-                return { type: 'inventory', value: inventory[foundKeyword] };
+                return { type: 'inventory', value: inventory[foundKeyword], keyword: foundKeyword  };
             } else if (interrupters[foundKeyword]) {
-                return { type: 'interrupters', value: interrupters[foundKeyword] };
+                return { type: 'interrupters', value: interrupters[foundKeyword], keyword: foundKeyword  };
             }
         }
         return { type: null, value: null };
@@ -74,7 +75,7 @@ export default function App() {
 
     return (
         <>
-            <Menu className="menu" handleClick={handleClick} gameStarted={gameStarted} />
+            <Menu handleClick={handleClick} gameStarted={gameStarted} />
             <Map gameStarted={gameStarted} currentLocation={currentLocation} />
             <GameText
                 gameStarted={gameStarted}

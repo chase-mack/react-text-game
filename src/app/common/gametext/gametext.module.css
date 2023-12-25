@@ -1,0 +1,26 @@
+.gameText {
+	flex-direction: column;
+	margin: auto;
+	align-items: center;
+	width: 50%;
+	font-size: 0.75rem;
+	text-align: center;
+	color: var(--primary-color);
+}
+
+.action {
+	height: 25px;
+	align-self: center;
+	margin-top: 25px;
+}
+
+.userInput {
+    display: block;
+	background: var(--primary-color);
+	border-radius: 0.5rem;
+	border: var(--tertiary-color);
+	height: 25px;
+	width: 15rem;
+	text-align: center;
+	color: var(--tertiary-color);
+}
