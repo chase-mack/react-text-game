@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react';
-import Map from './common/map/map';
-import Menu from './common/menu/menu';
-import GameText from './common/gametext/gametext';
+import Map from './components/map/map';
+import Menu from './components/menu/menu';
+import GameText from './components/gametext/gametext';
 import { destinations, inventory, interrupters } from '../util/keywordObjects';
 
 export default function App() {
